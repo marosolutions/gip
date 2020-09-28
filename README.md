@@ -20,9 +20,22 @@ Or install it yourself as:
 
     $ gem install gip
 
-## Usage
+## Configuration
 
-TODO: Write usage instructions here
+```ruby
+ Gip.configure do |config|
+    config.host = Rails.application.credentials[:host]
+    config.api_key = Rails.application.credentials[:api_key]
+ end
+```
+
+## Usage
+```ruby
+    obj = Gip::SignUp.new({}).execute
+    => #<Gip::SignUp:0x000056122e64e6c8 @host="<Host name>", @api_key="<Api key>", @errors=["Email must be present", "Password must be present"], @params=#<struct Gip::SignUp::Params email=nil, password=nil, display_name=nil>>
+    obj.errors
+    ["Email must be present", "Password must be present"]
+```
 
 ## Development
 
