@@ -30,13 +30,26 @@ Or install it yourself as:
 ```
 
 ## Usage
+Sign up
 ```ruby
-    obj = Gip::SignUp.new({}).execute
+    obj = Gip::SignUp.new({}).response
     => #<Gip::SignUp:0x000056122e64e6c8 @host="<Host name>", @api_key="<Api key>", @errors=["Email must be present", "Password must be present"], @params=#<struct Gip::SignUp::Params email=nil, password=nil, display_name=nil>>
     obj.errors
     ["Email must be present", "Password must be present"]
-```
 
+    obj = Gip::SignUp.new({email: 'homer@example.com', password: 'password'}).response
+    
+```
+Verify token
+
+```ruby
+    obj = Gip::VerifyToken.new({}).response
+    obj.errors
+    ["Jwt token must be present"]
+
+    obj = Gip::VerifyToken.new({jwt: '<token>'}).response   
+    
+```
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
