@@ -3,6 +3,12 @@ require "gip/version"
 module Gip
   class Error < StandardError; end
   
+  class Gip::ConfigurationError < Gip::Error
+    def message
+      'Api key and host must exist'
+    end
+  end
+
   class << self
     attr_accessor :configuration
 
@@ -26,7 +32,7 @@ module Gip
     def initialize
       @host  = Gip.configuration&.host
       @api_key = Gip.configuration&.api_key
-      raise 'Host and Api key must exist' if !valid_for_execution
+      raise Gip::ConfigurationError if !valid_for_execution
       @errors = []
     end
 
