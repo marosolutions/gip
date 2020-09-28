@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "login_service"
+require "gip"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

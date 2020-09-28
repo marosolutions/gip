@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class LoginService::VerifyToken < LoginService::Service
+class Gip::VerifyToken < Gip::Service
   Params = Struct.new(
     :jwt,
     keyword_init: true

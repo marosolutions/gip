@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class LoginService::SignUp < LoginService::Service
+class Gip::SignUp < Gip::Service
 	Params = Struct.new(
 		:email,
 		:password,

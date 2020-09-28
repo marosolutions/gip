@@ -1,13 +1,13 @@
-require "login_service/version"
+require "gip/version"
 
-module LoginService
+module Gip
   class Error < StandardError; end
   
   class << self
     attr_accessor :configuration
 
     def configure &blk
-      self.configuration ||= LoginService::Configuration.new.tap(&blk)
+      self.configuration ||= Gip::Configuration.new.tap(&blk)
     end
   end
 
@@ -24,14 +24,13 @@ module LoginService
     attr_reader :host, :url, :response_data, :response_status
 
     def initialize
-      @host  = LoginService.configuration.host
-      @api_key = LoginService.configuration.api_key
+      @host  = Gip.configuration.host
+      @api_key = Gip.configuration.api_key
       @errors = []
     end
 
     def response
       execute
-
       return self
     end
 
@@ -113,5 +112,5 @@ module LoginService
   end
 end
 
-require "login_service/sign_up"
-require "login_service/verify_token"
+require "gip/sign_up"
+require "gip/verify_token"

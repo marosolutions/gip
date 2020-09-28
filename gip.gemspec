@@ -1,11 +1,11 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "login_service/version"
+require "gip/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "login_service"
-  spec.version       = LoginService::VERSION
+  spec.name          = "gip"
+  spec.version       = Gip::VERSION
   spec.authors       = ["Maropost"]
   spec.email         = ["admin@maropost.com"]
 
