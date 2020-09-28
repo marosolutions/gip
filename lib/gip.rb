@@ -24,8 +24,9 @@ module Gip
     attr_reader :host, :url, :response_data, :response_status
 
     def initialize
-      @host  = Gip.configuration.host
-      @api_key = Gip.configuration.api_key
+      @host  = Gip.configuration&.host
+      @api_key = Gip.configuration&.api_key
+      raise 'Host and Api key must exist' if !valid_for_execution
       @errors = []
     end
 
@@ -109,6 +110,12 @@ module Gip
 
     def service_path
       raise 'Define service path of API in base class'
+    end
+
+    private 
+
+    def valid_for_execution
+      !(@host.to_s.empty? || @api_key.to_s.empty?)
     end
   end
 end
