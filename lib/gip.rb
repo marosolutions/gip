@@ -78,6 +78,7 @@ module Gip
           raise 'Invalid request type'
         end
       end
+      self
     end
 
     def validate
