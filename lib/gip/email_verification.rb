@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Gip::EmailVerification < LoginService
+class Gip::EmailVerification < Gip::Service
   Params = Struct.new(
     :email,
     keyword_init: true
