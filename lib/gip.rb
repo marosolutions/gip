@@ -127,3 +127,5 @@ end
 
 require "gip/sign_up"
 require "gip/verify_token"
+require "gip/reset_password"
+require "gip/email_verification"
