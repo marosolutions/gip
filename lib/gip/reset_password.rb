@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Gip::ResetPassword < LoginService
+class Gip::ResetPassword < Gip::Service
   Params = Struct.new(
     :email,
     :password,
