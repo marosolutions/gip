@@ -63,11 +63,17 @@ module Gip
       http = Net::HTTP.new(url.host, url.port)
       http.use_ssl = false
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-      if request_type == 'POST'
-        request = Net::HTTP::Post.new(url)
-      else
+      case request_type 
+      when 'GET'
         request = Net::HTTP::Get.new(url)
+      when 'POST'
+        request = Net::HTTP::Post.new(url)
+      when 'PUT'
+        request = Net::HTTP::Put.new(url)
+      else
+        raise 'Invalid request type'
       end
+  
       request["Authorization"] = @api_key
       request["content-type"] = 'application/json'
       yield(http, request)
@@ -76,29 +82,16 @@ module Gip
     def execute
       validate
       if valid?
-        case request_type 
-        when 'GET'
-          process_get_request
-        when 'POST'
-          process_post_request
-        else
-          raise 'Invalid request type'
-        end
+        make_request
       end
     end
 
     def validate
     end
 
-    def process_post_request
+    def make_request
       request(service_path, request_type) do |http, request|
         request.body = payload.to_json
-        process_request http, request
-      end
-    end
-
-    def process_get_request
-      request(service_path, request_type) do |http, request|
         process_request http, request
       end
     end
