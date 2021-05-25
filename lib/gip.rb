@@ -61,7 +61,7 @@ module Gip
       url = @host+path
       url = URI(url)
       http = Net::HTTP.new(url.host, url.port)
-      http.use_ssl = false
+      http.use_ssl = @host.start_with?('https')
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
       case request_type 
       when 'GET'
