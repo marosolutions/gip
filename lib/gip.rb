@@ -59,6 +59,7 @@ module Gip
 
     def request path, request_type, &blck
       url = @host+path
+      url = url + '?' + URI.encode_www_form(payload) if request_type == 'GET'
       url = URI(url)
       http = Net::HTTP.new(url.host, url.port)
       http.use_ssl = @host.start_with?('https')
@@ -91,7 +92,7 @@ module Gip
 
     def make_request
       request(service_path, request_type) do |http, request|
-        request.body = payload.to_json
+        request.body = payload.to_json if request_type != 'GET'
         process_request http, request
       end
     end
